@@ -1,0 +1,18 @@
+<template name="masterLayout">
+    
+  <!-- Navbar goes here -->
+  {{> yield region='nav'}}
+
+    <!-- Page Layout here -->
+    <div class="row">
+      <div id='content' class="col s12 m12 l12"> <!-- Note that "m8 l9" was added -->
+        <!-- Teal page content
+              This content will be:
+          9-columns-wide on large screens,
+          8-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+        
+    		{{> yield}}
+      </div>
+    </div>
+</template>

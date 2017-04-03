@@ -1,0 +1,63 @@
+<template name="nav">
+  <nav>
+    <div class="nav-wrapper teal">
+      <a href="#" class="brand-logo">CSV For All</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        {{#if genderIs 'male'}}
+        <li>
+          <div class="chip">
+            <img src="images/flat-avatar.png" alt="Contact Person">
+            {{ currentUser.username }}  
+          </div>
+        </li>
+        {{/if}}
+        {{#if genderIs 'female'}}
+        <li>
+          <div class="chip">
+            <img src="images/flat-avatar-female.png" alt="Contact Person">
+            {{ currentUser.username }}  
+          </div>
+        </li>
+        {{/if}}
+     
+        <li class="{{isActiveRoute regex='home'}}"><a class="waves-effect" href="{{pathFor 'home'}}">
+          Home</a></li>
+        {{#if currentUser}}
+        <li class="{{isActiveRoute regex='upload'}}"><a class="waves-effect" 
+          href="{{pathFor 'upload'}}">Upload CSV</a></li>
+        <li class="{{isActiveRoute regex='list'}}"><a class="waves-effect" 
+          href="{{pathFor 'list'}}">CSV List</a></li>
+        {{/if}}
+        <li>{{> atNavButton }}</li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        {{#if currentUser}}
+        <li><div class="userView">
+          <div class="background">
+            <img src="images/sidebar.jpg">
+          </div>
+          {{#if genderIs 'male'}}
+          <a href="#!user"><img class="circle" src="images/flat-avatar.png"></a>
+          {{/if}}
+          {{#if genderIs 'female'}}
+          <a href="#!user"><img class="circle" src="images/flat-avatar-female.png"></a>
+          {{/if}}
+          <a href="#!name"><span class="white-text name">{{ currentUser.username }}</span></a>
+          <a href="#!email"><span class="white-text email">{{ currentUser.emails.[0].address }}</span></a>
+        </div></li>
+        {{/if}}
+        <li><a class="subheader letter">CSV For All</a></li>
+        <li class="{{isActiveRoute regex='home'}}"><a class="waves-effect" href="{{pathFor 'home'}}">
+          Home</a></li>
+        {{#if currentUser}}
+        <li class="{{isActiveRoute regex='upload'}}"><a class="waves-effect" 
+          href="{{pathFor 'upload'}}">Upload CSV</a></li>
+        <li class="{{isActiveRoute regex='list'}}"><a class="waves-effect" 
+          href="{{pathFor 'list'}}">CSV List</a></li>
+        {{/if}}
+        <li>{{> atNavButton }}</li>
+      </ul>
+    </div>
+  </nav>
+</template>
