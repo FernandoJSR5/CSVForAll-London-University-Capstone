@@ -32,3 +32,7 @@ aldeed:template-extension
 harrison:papa-parse
 reactive-var
 babrahams:editable-text
+aldeed:simple-schema
+aldeed:collection2
+email
+reactive-dict

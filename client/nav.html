@@ -24,10 +24,14 @@
         <li class="{{isActiveRoute regex='home'}}"><a class="waves-effect" href="{{pathFor 'home'}}">
           Home</a></li>
         {{#if currentUser}}
+        <li class="{{isActiveRoute regex='uploadEstablishment'}}"><a class="waves-effect" 
+          href="{{pathFor 'uploadEstablishment'}}">Upload Establishments</a></li>
+        <li class="{{isActiveRoute regex='establishmentsList'}}"><a class="waves-effect" 
+          href="{{pathFor 'establishmentsList'}}">Establishments List</a></li>
         <li class="{{isActiveRoute regex='upload'}}"><a class="waves-effect" 
-          href="{{pathFor 'upload'}}">Upload CSV</a></li>
+          href="{{pathFor 'upload'}}">Upload Sales</a></li>
         <li class="{{isActiveRoute regex='list'}}"><a class="waves-effect" 
-          href="{{pathFor 'list'}}">CSV List</a></li>
+          href="{{pathFor 'list'}}">Sales List</a></li>
         {{/if}}
         <li>{{> atNavButton }}</li>
       </ul>
@@ -48,12 +52,12 @@
         </div></li>
         {{/if}}
         <li><a class="subheader letter">CSV For All</a></li>
-        <li class="{{isActiveRoute regex='home'}}"><a class="waves-effect" href="{{pathFor 'home'}}">
+        <li class="{{isActiveRoute regex='home'}}"><a class="waves-effect waves-teal" href="{{pathFor 'home'}}">
           Home</a></li>
         {{#if currentUser}}
-        <li class="{{isActiveRoute regex='upload'}}"><a class="waves-effect" 
+        <li class="{{isActiveRoute regex='upload'}}"><a class="waves-effect waves-teal" 
           href="{{pathFor 'upload'}}">Upload CSV</a></li>
-        <li class="{{isActiveRoute regex='list'}}"><a class="waves-effect" 
+        <li class="{{isActiveRoute regex='list'}}"><a class="waves-effect waves-teal" 
           href="{{pathFor 'list'}}">CSV List</a></li>
         {{/if}}
         <li>{{> atNavButton }}</li>

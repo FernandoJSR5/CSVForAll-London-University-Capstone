@@ -1,14 +1,35 @@
+Template.list.onCreated(function(){
+	var self = this;
+	self.list = new ReactiveDict();
+	self.list.setDefault( 'valueToFilter' , null);
+});
+
 Template.list.onRendered(function(){
-  this.$('.datepicker').pickadate({autoclose: true,});
+	this.$('.datepicker').pickadate({autoclose: false,});
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+  $(document).ready(function() {
+    $('select').material_select();
+  });
 });
 
 Meteor.subscribe("sales", function(){
 	return Sales.find().fetch();
 });
 
+Meteor.subscribe("establishments", function(){
+	return Establishments.find().fetch();
+});
+
 Template.list.helpers({
 	sales:function(){
-		return Sales.find().fetch();
+		var instance = Template.instance();
+		return Sales.find({establishment_owner:instance.list.get('valueToFilter')}).fetch();
+	},
+	establishments:function(){
+		return Establishments.find().fetch();
 	},
 	// return true if I am allowed to edit the current account, false otherwise
 	userCanEdit : function(doc,Collection) {
@@ -42,12 +63,12 @@ Template.list.events({
 		event.preventDefault();
 		if(Meteor.user()){
 			var data_id= this._id;
-			var changeCheckbox = document.querySelector("#d"+data_id);
+			var changeCheckbox = document.querySelector("#s"+data_id);
 			var check_value = changeCheckbox.checked;
 			console.log(check_value);
 			Meteor.call("activateSchedule",data_id, check_value, function(err, res){
 				if(err){
-					$("#d"+data_id).removeAttr('checked');
+					$("#s"+data_id).removeAttr('checked');
 					Materialize.toast('Switch cannot change!', 3000, 'red rounded');
 				}
 				else {
@@ -68,5 +89,12 @@ Template.list.events({
 				Materialize.toast('The date was switched!', 3000, 'green rounded');
 			}
 		});
-	}
+	},
+	'change select':function(event, template){
+		event.preventDefault();
+		var instance = Template.instance();
+		//instance.list.set( 'valueToFilter' $("select").val() );
+		instance.list.set( 'valueToFilter', event.target.value );
+		console.log(event.target.value);
+	},
 });

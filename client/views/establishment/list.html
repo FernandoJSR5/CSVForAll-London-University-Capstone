@@ -1,0 +1,32 @@
+<template name="establishmentsList">
+	<table class='highlight'>
+    <thead>
+      <tr>
+          <th class="">ID</th>
+          <th class="">Name</th>
+          <th class="">Email</th>
+          <th class="">Phone</th>
+          <th class="">Activity</th>
+          <th class="">Address</th>
+          <th class="">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    	{{#each establishments}}
+      <tr>
+        <td>{{> editableText collection="establishments" field="_id" userCanEdit=userCanEdit}}</td>
+        <td>{{> editableText collection="establishments" field="name" userCanEdit=userCanEdit}}</td>
+        <td>{{> editableText collection="establishments" field="email" userCanEdit=userCanEdit}}</td>
+        <td>{{> editableText collection="establishments" field="phone" userCanEdit=userCanEdit}}</td>
+        <td>{{> editableText collection="establishments" field="activity" userCanEdit=userCanEdit}}</td>
+        <td>{{> editableText collection="establishments" field="address" userCanEdit=userCanEdit}}</td>
+        <td><a class="js-delete-data" href="#"><i class="material-icons icon-red">delete_forever</i></a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <!-- Modal Structure -->
+</template>
