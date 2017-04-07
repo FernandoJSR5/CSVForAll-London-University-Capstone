@@ -26,7 +26,12 @@ Meteor.subscribe("establishments", function(){
 Template.list.helpers({
 	sales:function(){
 		var instance = Template.instance();
-		return Sales.find({establishment_owner:instance.list.get('valueToFilter')}).fetch();
+		if(instance.list.get('valueToFilter', null)){
+			return Sales.find({establishment_owner:instance.list.get('valueToFilter')}).fetch();
+		}
+		else {
+			return Sales.find({}).fetch();
+		}
 	},
 	establishments:function(){
 		return Establishments.find().fetch();
