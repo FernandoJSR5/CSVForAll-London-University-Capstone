@@ -1,4 +1,5 @@
 <template name="establishmentsList">
+  {{#if currentUser}}
 	<table class='highlight'>
     <thead>
       <tr>
@@ -15,18 +16,19 @@
     <tbody>
     	{{#each establishments}}
       <tr>
-        <td>{{> editableText collection="establishments" field="_id" userCanEdit=userCanEdit}}</td>
+        <td>{{_id}}</td>
         <td>{{> editableText collection="establishments" field="name" userCanEdit=userCanEdit}}</td>
         <td>{{> editableText collection="establishments" field="email" userCanEdit=userCanEdit}}</td>
         <td>{{> editableText collection="establishments" field="phone" userCanEdit=userCanEdit}}</td>
         <td>{{> editableText collection="establishments" field="activity" userCanEdit=userCanEdit}}</td>
         <td>{{> editableText collection="establishments" field="address" userCanEdit=userCanEdit}}</td>
-        <td><a class="js-delete-data" href="#"><i class="material-icons icon-red">delete_forever</i></a>
+        <td><a class="js-delete-stablishment" href="#"><i class="material-icons icon-red">delete_forever</i></a>
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+  {{/if}}
 
   <!-- Modal Structure -->
 </template>

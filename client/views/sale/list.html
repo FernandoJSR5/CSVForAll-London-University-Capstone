@@ -1,8 +1,9 @@
 <template name="list">
-
+  {{#if currentUser}}
   <div class="input-field col s12 l4">
     <select>
       <option disabled selected>Choose your option</option>
+      <option value="all">All</option>
       {{#each establishments}}
       <option value="{{_id}}">{{name}}</option>
       {{/each}}
@@ -27,78 +28,88 @@
 
     <tbody>
     	{{#each sales}}
-      <tr>
-        <td>{{name}}</td>
-        <td>{{activity}}</td>
-        <td>{{pay}}</td>
-        {{#if state}}
-        <td class="center">{{date}}</td>
-        {{else}}
-        <td>
-          <input id="dp{{_id}}" type="date" class="datepicker">
-        </td>
-        {{/if}}
-        <td>
-          <div class="switch">
-            <label>
-              Off
-              <input id="s{{_id}}" type="checkbox" class="js-switch" checked="{{state}}">
-              <span class="lever"></span>
-              On
-              </label>
-          </div>
-        </td>
-        <td><i class="material-icons icon-{{status}}">{{status}}</i></td>
-        <td><a class="" href="#modal-{{_id}}"><i class="material-icons icon-info">info</i></a></td>
-        <td><a class="js-delete-data" href="#"><i class="material-icons icon-red">delete_forever</i></a>
-        </td>
-      </tr>
-      <div id="modal-{{_id}}" class="modal modal-fixed-footer">
-        <div class="modal-content">
-          <div class="row">
-            <form class="col s12">
-              <h4 class="letter">User Detail</h4>
-              <div class="row">
-                <div class="input-field col s6">
-                  <label class='font-letter'>Name</label>
-                  <p class="font-letter">{{> editableText collection="sales" field="name" userCanEdit=userCanEdit}}</p>
-                </div>
-                <div class="input-field col s6">
-                  <label class='font-letter'>Email</label>
-                  <p class="font-letter">{{> editableText collection="sales" field="email" userCanEdit=userCanEdit}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <label class='font-letter'>Phone</label>
-                  <p class="font-letter">{{> editableText collection="sales" field="phone" userCanEdit=userCanEdit}}</p>
-                </div>
-                <div class="input-field col s6">
-                  <label class='font-letter'>Activity</label>
-                  <p class="font-letter">{{> editableText collection="sales" field="activity" userCanEdit=userCanEdit}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <label class='font-letter'>Gender</label>
-                  <p class="font-letter">{{> editableText collection="sales" field="gender" userCanEdit=userCanEdit}}</p>
-                </div>
-                <div class="input-field col s6">
-                  {{#unless state}}
-                  <label class='font-letter'>Pay</label>
-                  <p class="font-letter">{{> editableText collection="sales" field="pay" userCanEdit=userCanEdit }}</p>
-                  {{/unless}}
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-teal btn grey lighten-1">Close</a>
-        </div>
-      </div>
+        {{> bodyTable}}
       {{/each}}
     </tbody>
   </table>
   <!-- Modal Structure -->
+  {{/if}}
+</template>
+
+<template name="bodyTable">
+  <tr>
+    <td>{{name}}</td>
+    <td>{{activity}}</td>
+    <td>{{pay}}</td>
+    {{#if state}}
+    <td class="center">{{date}}</td>
+    {{else}}
+      {{> picker}}
+    {{/if}}
+    <td>
+      <div class="switch">
+        <label>
+          Off
+          <input id="s{{_id}}" type="checkbox" class="js-switch" checked="{{state}}">
+          <span class="lever"></span>
+          On
+          </label>
+      </div>
+    </td>
+    <td><i class="material-icons icon-{{status}}">{{status}}</i></td>
+    <td><a class="" href="#modal-{{_id}}"><i class="material-icons icon-info">info</i></a></td>
+    <td><a class="js-delete-data" href="#"><i class="material-icons icon-red">delete_forever</i></a>
+    </td>
+  </tr>
+  <div id="modal-{{_id}}" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+          <h4 class="letter">User Detail</h4>
+          <div class="row">
+            <div class="input-field col s6">
+              <label class='font-letter'>Name</label>
+              <p class="font-letter">{{> editableText collection="sales" field="name" userCanEdit=userCanEdit}}</p>
+            </div>
+            <div class="input-field col s6">
+              <label class='font-letter'>Email</label>
+              <p class="font-letter">{{> editableText collection="sales" field="email" userCanEdit=userCanEdit}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <label class='font-letter'>Phone</label>
+              <p class="font-letter">{{> editableText collection="sales" field="phone" userCanEdit=userCanEdit}}</p>
+            </div>
+            <div class="input-field col s6">
+              <label class='font-letter'>Activity</label>
+              <p class="font-letter">{{> editableText collection="sales" field="activity" userCanEdit=userCanEdit}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <label class='font-letter'>Gender</label>
+              <p class="font-letter">{{> editableText collection="sales" field="gender" userCanEdit=userCanEdit}}</p>
+            </div>
+            <div class="input-field col s6">
+              {{#unless state}}
+              <label class='font-letter'>Pay</label>
+              <p class="font-letter">{{> editableText collection="sales" field="pay" userCanEdit=userCanEdit }}</p>
+              {{/unless}}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-teal btn grey lighten-1">Close</a>
+    </div>
+  </div>
+</template>
+
+<template name="picker">
+  <td>
+    <label>{{date}}</label>
+    <input id="dp{{_id}}" type="date" class="datepicker">
+  </td>
 </template>

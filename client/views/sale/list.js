@@ -5,14 +5,21 @@ Template.list.onCreated(function(){
 });
 
 Template.list.onRendered(function(){
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+});
+
+Template.bodyTable.onRendered(function(){
 	this.$('.datepicker').pickadate({autoclose: false,});
   $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
   });
-  $(document).ready(function() {
-    $('select').material_select();
-  });
+});
+
+Template.picker.onRendered(function(){
+	this.$('.datepicker').pickadate({autoclose: false,});
 });
 
 Meteor.subscribe("sales", function(){
@@ -26,11 +33,16 @@ Meteor.subscribe("establishments", function(){
 Template.list.helpers({
 	sales:function(){
 		var instance = Template.instance();
-		if(instance.list.get('valueToFilter', null)){
-			return Sales.find({establishment_owner:instance.list.get('valueToFilter')}).fetch();
+		if(!instance.list.get('valueToFilter', null)){
+			console.log('hello!' +instance.list.get('valueToFilter'));
+			return null;
+		}
+		else if(instance.list.get('valueToFilter') === "all"){
+			return Sales.find({}).fetch();
 		}
 		else {
-			return Sales.find({}).fetch();
+			console.log('hello!' +instance.list.get('valueToFilter'));
+			return Sales.find({establishment_owner:instance.list.get('valueToFilter')}).fetch();
 		}
 	},
 	establishments:function(){

@@ -1,4 +1,5 @@
 <template name="uploadEstablishment">
+	{{#if currentUser}}
 	<div class="row">
 		<div class="col l12">
 		  <h1 class="center letter">Upload your Establishment CSV file here!</h1>
@@ -62,4 +63,5 @@
 		 {{/unless}}
 		</div>
 	</div>
+	{{/if}}
 </template>

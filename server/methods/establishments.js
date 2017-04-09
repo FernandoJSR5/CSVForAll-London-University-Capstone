@@ -12,4 +12,13 @@ Meteor.methods({
       }
     }
   },
+  removeEstablishment(userId, data_id){
+    if(! this.userId) {
+        throw new Meteor.Error('not-authorized');
+    }
+    if(this.userId){
+      check(data_id,String);
+      return Establishments.remove({"_id":data_id});
+    }
+  },
 });
