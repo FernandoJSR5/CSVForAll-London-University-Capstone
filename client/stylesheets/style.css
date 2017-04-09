@@ -30,11 +30,6 @@ body {
     flex: 1 0 auto;
   }
 
-footer > .content {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
 header,
 main,
 footer {
@@ -121,4 +116,8 @@ i.icon-red {
 
 .icon-info {
   color: #00bcd4;
+}
+
+.material-icons {
+  /*margin-left:1.0em;*/
 }
