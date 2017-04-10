@@ -121,3 +121,17 @@ i.icon-red {
 .material-icons {
   /*margin-left:1.0em;*/
 }
+
+img.responsive-img, video.responsive-video {
+  max-width: 100%;
+  height: auto;
+  height: 160px;
+  width: 800px;
+}
+
+.responsive-carousel {
+  max-width: 100%;
+  height: auto;
+  height: 160px;
+  width: 800px
+}
