@@ -1,14 +1,14 @@
-Template.upload.onCreated( () => {
+Template.uploadSales.onCreated( () => {
   Template.instance().uploading = new ReactiveVar( false );
 });
 
-Template.upload.helpers({
+Template.uploadSales.helpers({
   uploading() {
     return Template.instance().uploading.get();
   }
 });
 
-Template.upload.events({
+Template.uploadSales.events({
   'change [name="uploadCSV"]' ( event, template ) {
     template.uploading.set( true );
 

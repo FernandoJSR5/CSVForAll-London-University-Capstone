@@ -29,10 +29,14 @@
 
         <li class="{{isActiveRoute regex='establishmentsList'}}"><a class="waves-effect" 
           href="{{pathFor 'establishmentsList'}}">Establishments List</a></li>
-        <li class="{{isActiveRoute regex='upload'}}"><a class="waves-effect" 
-          href="{{pathFor 'upload'}}">Upload Sales</a></li>
-        <li class="{{isActiveRoute regex='list'}}"><a class="waves-effect" 
-          href="{{pathFor 'list'}}">Sales List</a></li>
+
+        {{#if establishmentIs}}
+        <li class="{{isActiveRoute regex='uploadSales'}}"><a class="waves-effect" 
+          href="{{pathFor 'uploadSales'}}">Upload Sales</a></li>
+        <li class="{{isActiveRoute regex='salesList'}}"><a class="waves-effect" 
+          href="{{pathFor 'salesList'}}">Sales List</a></li>
+        {{/if}}
+
         {{/if}}
         <li>{{> atNavButton }}</li>
       </ul>
@@ -56,10 +60,18 @@
         <li class="{{isActiveRoute regex='home'}}"><a class="waves-effect waves-teal" href="{{pathFor 'home'}}">
           Home</a></li>
         {{#if currentUser}}
-        <li class="{{isActiveRoute regex='upload'}}"><a class="waves-effect waves-teal" 
-          href="{{pathFor 'upload'}}">Upload CSV</a></li>
-        <li class="{{isActiveRoute regex='list'}}"><a class="waves-effect waves-teal" 
-          href="{{pathFor 'list'}}">CSV List</a></li>
+        <li class="{{isActiveRoute regex='uploadEstablishment'}}"><a class="waves-effect waves-teal" 
+          href="{{pathFor 'uploadEstablishment'}}">Upload CSV</a></li>
+        <li class="{{isActiveRoute regex='establishmentsList'}}"><a class="waves-effect waves-teal" 
+          href="{{pathFor 'establishmentsList'}}">CSV List</a></li>
+
+        {{#if establishmentIs}}
+        <li class="{{isActiveRoute regex='uploadSales'}}"><a class="waves-effect" 
+          href="{{pathFor 'uploadSales'}}">Upload Sales</a></li>
+        <li class="{{isActiveRoute regex='salesList'}}"><a class="waves-effect" 
+          href="{{pathFor 'salesList'}}">Sales List</a></li>
+        {{/if}}
+
         {{/if}}
         <li>{{> atNavButton }}</li>
       </ul>

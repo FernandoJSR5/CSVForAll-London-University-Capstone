@@ -1,10 +1,10 @@
-Template.list.onCreated(function(){
+Template.salesList.onCreated(function(){
 	var self = this;
-	self.list = new ReactiveDict();
-	self.list.setDefault( 'valueToFilter' , null);
+	self.salesList = new ReactiveDict();
+	self.salesList.setDefault( 'valueToFilter' , null);
 });
 
-Template.list.onRendered(function(){
+Template.salesList.onRendered(function(){
   $(document).ready(function() {
     $('select').material_select();
   });
@@ -30,19 +30,19 @@ Meteor.subscribe("establishments", function(){
 	return Establishments.find().fetch();
 });
 
-Template.list.helpers({
+Template.salesList.helpers({
 	sales:function(){
 		var instance = Template.instance();
-		if(!instance.list.get('valueToFilter', null)){
-			console.log('hello!' +instance.list.get('valueToFilter'));
+		if(!instance.salesList.get('valueToFilter', null)){
+			console.log('hello!' +instance.salesList.get('valueToFilter'));
 			return null;
 		}
-		else if(instance.list.get('valueToFilter') === "all"){
+		else if(instance.salesList.get('valueToFilter') === "all"){
 			return Sales.find({}).fetch();
 		}
 		else {
-			console.log('hello!' +instance.list.get('valueToFilter'));
-			return Sales.find({establishment_owner:instance.list.get('valueToFilter')}).fetch();
+			console.log('hello!' +instance.salesList.get('valueToFilter'));
+			return Sales.find({establishment_owner:instance.salesList.get('valueToFilter')}).fetch();
 		}
 	},
 	establishments:function(){
@@ -61,7 +61,7 @@ Template.list.helpers({
 	}
 });
 
-Template.list.events({
+Template.salesList.events({
 	'click .js-delete-data':function(event){
 		event.preventDefault();
 		var data_id = this._id;
@@ -111,7 +111,7 @@ Template.list.events({
 		event.preventDefault();
 		var instance = Template.instance();
 		//instance.list.set( 'valueToFilter' $("select").val() );
-		instance.list.set( 'valueToFilter', event.target.value );
+		instance.salesList.set( 'valueToFilter', event.target.value );
 		console.log(event.target.value);
 	},
 });

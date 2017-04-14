@@ -16,7 +16,7 @@
     <tbody>
     	{{#each establishments}}
       <tr>
-        <td>{{_id}}</td>
+        <td>{{> editableText collection="establishments" field="_id" userCanEdit=userCanEdit}}</td>
         <td>{{> editableText collection="establishments" field="name" userCanEdit=userCanEdit}}</td>
         <td>{{> editableText collection="establishments" field="email" userCanEdit=userCanEdit}}</td>
         <td>{{> editableText collection="establishments" field="phone" userCanEdit=userCanEdit}}</td>

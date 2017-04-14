@@ -26,24 +26,36 @@ Template.establishmentsList.events({
 	'click .js-delete-stablishment':function(event){
 		event.preventDefault();
 		var data_id = this._id;
-		console.log(data_id);
-		Meteor.call('removeSales', Meteor.userId(), data_id, function(err,res){
-			if(err){
-				console.log("Error "+err);
-				Materialize.toast('Any Data of this Establishment is active, please turn off the state first!', 3000, 'red rounded');
-			} else{
+		console.log("Establishment", Establishments.find().count());
+		if (Establishments.find().count() === 0){
+			Meteor.call('removeEstablishment', Meteor.userId(), data_id, function(err,res){
+				if(err){
+					console.log("Error "+err);
+					Materialize.toast('The establishment was not deleted!', 3000, 'red rounded');
+				}else{
 					console.log("Success "+res);
-					Meteor.call('removeEstablishment', Meteor.userId(), data_id, function(err,res){
-					if(err){
-						console.log("Error "+err);
-						Materialize.toast('The establishment was not deleted!', 3000, 'red rounded');
-					}else{
+					Materialize.toast('The establishment was deleted successfully!', 3000, 'green rounded');
+				}
+			});
+		}
+		else {
+			Meteor.call('removeSales', Meteor.userId(), data_id, function(err,res){
+				if(err){
+					console.log("Error "+err);
+					Materialize.toast('Any Data of this Establishment is active, please turn off the state first!', 3000, 'red rounded');
+				} else{
 						console.log("Success "+res);
-						Materialize.toast('The establishment was deleted successfully!', 3000, 'green rounded');
-					}
-				});
-			}
-		});
-		
+						Meteor.call('removeEstablishment', Meteor.userId(), data_id, function(err,res){
+						if(err){
+							console.log("Error "+err);
+							Materialize.toast('The establishment was not deleted!', 3000, 'red rounded');
+						}else{
+							console.log("Success "+res);
+							Materialize.toast('The establishment was deleted successfully!', 3000, 'green rounded');
+						}
+					});
+				}
+			});
+		}
 	},
 });

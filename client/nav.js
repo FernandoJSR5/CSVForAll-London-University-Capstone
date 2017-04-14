@@ -1,3 +1,7 @@
+Meteor.subscribe("establishments", function(){
+  return Establishments.find().fetch();
+});
+
 Template.nav.onRendered(function(){
 	$('.button-collapse').sideNav({ 
     menuWidth: 260, // Default is 300
@@ -12,5 +16,10 @@ Template.nav.helpers({
   genderIs: function(gender){
     if(Meteor.user() === null) return null;
     return Meteor.user().profile.gender === gender;
-  }
+  },
+  establishmentIs: function(value){
+    if(Establishments.findOne()){
+      return true;
+    } 
+  },
 });
