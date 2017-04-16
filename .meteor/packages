@@ -36,3 +36,7 @@ aldeed:simple-schema
 aldeed:collection2
 email
 reactive-dict
+standard-minifier-css@1.1.8   # CSS minifier run for production mode
+standard-minifier-js@1.1.8    # JS minifier run for production mode
+es5-shim@4.6.13               # ECMAScript 5 compatibility for older browsers.
+ecmascript@0.5.7              # Enable ECMAScript2015+ syntax in app code
